@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_brand_icons/flutter_brand_icons.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class PresistableDrawer extends StatelessWidget {
+class PresistableDrawer extends StatefulWidget {
   const PresistableDrawer({Key key}) : super(key: key);
+
+  @override
+  _PresistableDrawerState createState() => _PresistableDrawerState();
+}
+
+class _PresistableDrawerState extends State<PresistableDrawer> {
   final color = Colors.white;
+
   final fontSize = 30.0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,6 +25,7 @@ class PresistableDrawer extends StatelessWidget {
             color: Colors.cyan.withAlpha(200),
           ),
           SizedBox(height: 10),
+          FractionallySizedBox(widthFactor: 0.8, child: searchField()),
           iconText(Icons.home, 'الصفحه الرئيسه'),
           iconText(Icons.book, 'الدروس'),
           iconText(Icons.info, 'حول'),
@@ -88,6 +96,41 @@ class PresistableDrawer extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  Widget searchField() {
+    final theme = Theme.of(context);
+    return Theme(
+      data: theme.copyWith(primaryColor: Colors.cyan.withAlpha(200)),
+      child: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              border: Border.all(
+                color: Colors.white,
+                style: BorderStyle.solid,
+                width: 1,
+              )),
+          child: Padding(
+            padding: EdgeInsetsDirectional.only(start: 10),
+            child: TextField(
+              textAlign: TextAlign.start,
+              style: TextStyle(color: Colors.white, fontSize: 20),
+              textDirection: TextDirection.rtl,
+              cursorColor: Colors.white,
+              decoration: InputDecoration(
+                focusedBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                suffixIcon: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          )),
     );
   }
 }
